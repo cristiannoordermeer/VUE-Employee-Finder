@@ -1,8 +1,8 @@
 # vue-test
 
 This is an application to search employees by name, last name or skills.
-We are using an API from mockap.
-We are consiming the GET /employees enpoint to fetch a list of employees. Initially its filled with 2 employees.
+We are using an API from mockapi (mockapi.io).
+We are consuming the GET /employees enpoint to fetch a list of employees. Initially its filled with 2 employees. To see this section, you need to click "Search Page".
 In progress:
   - Employee Creation
   - Employee Deletion 
