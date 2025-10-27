@@ -1,7 +1,11 @@
 # vue-test
 
-This template should help get you started developing with Vue 3 in Vite.
-
+This is an application to search employees by name, last name or skills.
+We are using an API from mockap.
+We are consiming the GET /employees enpoint to fetch a list of employees. Initially its filled with 2 employees.
+In progress:
+  - Employee Creation
+  - Employee Deletion 
 ## Recommended IDE Setup
 
 [VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
