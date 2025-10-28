@@ -1,15 +1,18 @@
 <script>
   import EmployeeCard from '../components/EmployeeCard.vue'
+  import EmployeeCreation from '../components/EmployeeCreation.vue'
   import { EmployeeService } from '../services/employeeService'
 
   export default {
     components: {
-      EmployeeCard
+      EmployeeCard,
+      EmployeeCreation
     },
     data() {
       return {
         items: [],
-        searchString: ''
+        searchString: '',
+        creatingFlag: false
       }
     },
     computed: {
@@ -25,11 +28,17 @@
       async fetchEmployees() {
         try {
           const res = await EmployeeService.getEmployees();
-          console.log('kikon aca esta la data:', res);
           this.items = res.data;
         } catch {
           alert("failed to fetch employees");
         }
+      },
+      toggleCreation() {
+        this.creatingFlag = !this.creatingFlag;
+      },
+      employeeCreated() {
+        this.fetchEmployees();
+        this.toggleCreation();
       }
     },
     mounted() {
@@ -40,13 +49,19 @@
 
 <template>
   <div class="about">
-    <input v-model="searchString" placeholder="Search for Employees" class="search-input"/>
-    <EmployeeCard v-for="employee in filteredEmployees" :employee="employee" class="employee-card"/>
-    <button class="add-button">Add Employee</button>
+    <div v-if="creatingFlag">
+      <EmployeeCreation @created="() => employeeCreated()"/>
+    </div>
+    <div v-else>
+        <input v-model="searchString" placeholder="Search for Employees" class="search-input"/>
+        <EmployeeCard v-for="employee in filteredEmployees" :employee="employee" class="employee-card"/>
+    </div>
+    <button class="add-button" @click="toggleCreation" v-if="!creatingFlag">Add Employee</button>
   </div>
 </template>
 
 <style>
+
 .about {
   display: flex;
   flex-direction: column;
@@ -70,5 +85,6 @@
   color: #FFF;
   font-weight: 700;
   align-self: end;
+  cursor: pointer;
 }
 </style>
