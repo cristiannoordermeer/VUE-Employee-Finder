@@ -39,6 +39,9 @@
       employeeCreated() {
         this.fetchEmployees();
         this.toggleCreation();
+      },
+      employeeDeleted() {
+        this.fetchEmployees();
       }
     },
     mounted() {
@@ -54,7 +57,7 @@
     </div>
     <div v-else>
         <input v-model="searchString" placeholder="Search for Employees" class="search-input"/>
-        <EmployeeCard v-for="employee in filteredEmployees" :employee="employee" class="employee-card"/>
+        <EmployeeCard v-for="employee in filteredEmployees" :employee="employee" class="employee-card" @deleted="() => employeeDeleted()"/>
     </div>
     <button class="add-button" @click="toggleCreation" v-if="!creatingFlag">Add Employee</button>
   </div>
@@ -70,6 +73,11 @@
 .search-input {
   margin-left: 16px;
   margin-bottom: 20px;
+  padding-left: 4px;
+  width: 200px;
+  height:30px;
+  border: solid 2px #00bd7e;
+  border-radius: 5px;
 }
 
 .employee-card {

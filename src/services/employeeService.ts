@@ -14,7 +14,12 @@ export const EmployeeService = {
     },
 
     async createEmployee(employee: any) {
-        const { data } = await api.post('/employees', employee)
+        const { data } = await api.post('/employees', employee);
         return data
-      }
+    },
+
+    async deleteEmployee(id: string) {
+        const { data } = await api.delete(`/employees/${id}`);
+        return data;
+    }
 }
